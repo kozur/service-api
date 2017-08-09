@@ -47,7 +47,13 @@ for (let m in config.modules) {
         }
     }
 } // Se ejecuta el servidor para que escuche en el puerto 3002
-app.listen(3002, function () {
-    console.log('[API] Escuchando en http://localhost:/3002');
+// app.listen(3002, function () {
+//     console.log('[API] Escuchando en http://localhost:/3002');
+// });
+
+var port = process.env.PORT || 8000
+app.listen(port, function () {
+    console.log("App is running on port " + port);
 });
+
 export = ​ app;

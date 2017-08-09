@@ -8,12 +8,6 @@ var requireDir = require("require-dir");
 var config = require("./config");
 //Crear el app Express
 var app = express();
-//Conectarse a MongoDB
-// mongoose.Promise = require('bluebird');
-// mongoose.Promise = global.Promise;
-// mongoose.connect(
-//     config.connectionStrings.mongoDB_main.host
-// );
 mongoose.connect("" + config.connectionStrings.mongoDB_main.host, { auth: config.connectionStrings.mongoDB_main.auth, server: config.connectionStrings.mongoDB_main.server });
 mongoose.connection.on('connected', function () {
     console.log('[Mongoose] Conexión OK');
@@ -48,8 +42,12 @@ for (var m in config.modules) {
         }
     }
 } // Se ejecuta el servidor para que escuche en el puerto 3002
-app.listen(3002, function () {
-    console.log('[API] Escuchando en http://localhost:/3002');
+// app.listen(3002, function () {
+//     console.log('[API] Escuchando en http://localhost:/3002');
+// });
+var port = process.env.PORT || 8000;
+app.listen(port, function () {
+    console.log("App is running on port " + port);
 });
 module.exports = app;
 //# sourceMappingURL=index.js.map
